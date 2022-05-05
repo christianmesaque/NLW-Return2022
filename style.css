@@ -9,14 +9,14 @@
 
 :root {
   /*Primary Colors*/
-  --brand-green: #00856f;
-  --brand-green-ligth: #dce9e2;
-  --brand-green-light-02: #f7f9f9;
+  --hue: 209;
+  --brand-primary: hsl(var(--hue), 100%, 26%);
+  --brand-ligth: hsl(calc(var(--hue) - 22), 23%, 89%);
   --brand-beige: #fffaf1;
-  --brand-green-hover: #00453a;
+  --brand-hover: hsl(var(--hue), 100%, 14%);
   /*Secundary Colors*/
-  --gray-headline: #212529;
-  --gray-paragraph: #495057;
+  --gray-headline: hsl(210, 11%, 15%);
+  --gray-paragraph: hsl(210, 9%, 31%);
   --white: #dddddd;
 
   font-size: 62.5%; /*1rem = 10px*/
@@ -80,7 +80,7 @@ section header h4 {
   font-weight: 700;
   line-height: 150%;
   letter-spacing: 0.08rem;
-  color: var(--brand-green);
+  color: var(--brand-primary);
   text-transform: uppercase;
 
   margin-bottom: 1.6rem;
@@ -93,6 +93,33 @@ section .content p {
 
   color: var(--gray-paragraph);
 }
+
+.button {
+  background-color: var(--brand-primary);
+  border: none;
+  border-radius: 4rem;
+  margin-bottom: 6rem;
+
+  padding: 1.6rem 3.2rem;
+  width: fit-content;
+
+  text-transform: uppercase;
+  color: var(--white);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+
+  transition: background 200ms;
+}
+
+.button:hover {
+  background-color: var(--brand-hover);
+}
 /*=== HOME ===*/
 #home {
   padding-top: calc(4.1rem + var(--nav-height));
@@ -102,7 +129,7 @@ section .content p {
   content: '';
   width: 100%;
   height: calc(112rem + var(--nav-height));
-  background-color: var(--brand-green-ligth);
+  background-color: var(--brand-ligth);
   display: block;
 
   position: absolute;
@@ -111,9 +138,13 @@ section .content p {
   z-index: -1;
 }
 
+#home .button {
+  margin-inline: auto;
+}
+
 #home h4 {
   font-size: 1.4rem;
-  color: var(--brand-green);
+  color: var(--brand-primary);
   margin-bottom: 1.6rem;
 }
 
@@ -130,29 +161,6 @@ section .content p {
   color: var(--gray-paragraph);
   line-height: 150%;
   margin-bottom: 3.2rem;
-}
-
-#home button {
-  background-color: var(--brand-green);
-  border: none;
-  border-radius: 4rem;
-  margin-bottom: 6rem;
-
-  height: 6.2rem;
-  width: 26.3rem;
-
-  text-transform: uppercase;
-  color: var(--white);
-  font-size: 1.4rem;
-  font-weight: 700;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .mulher-img {
@@ -174,7 +182,7 @@ section .content p {
   margin-inline: auto;
 
   background-color: var(--brand-beige);
-  border: 1px solid var(--brand-green-ligth);
+  border: 1px solid var(--brand-ligth);
   border-radius: 0.6rem;
 
   display: flex;
@@ -196,10 +204,33 @@ section .content p {
 .stat p {
   margin: 0;
 
-  color: var(--brand-green);
+  color: var(--brand-primary);
   line-height: 150%;
 }
 
+/* custom colors*/
+#services .card circle {
+  fill: var(--brand-ligth);
+}
+
+#navigation .logo path[fill*='#00856F'],
+#backToTopButton circle {
+  fill: var(--brand-primary);
+}
+
+button.open-menu path[stroke*='#00856F'],
+#contact li path {
+  stroke: var(--brand-primary);
+}
+
+body.menu-expanded #navigation .logo path,
+#navigation.scroll .logo path {
+  fill: white;
+}
+
+#navigation.scroll button.open-menu path[stroke*='#00856F'] {
+  stroke: white;
+}
 /*=== NAVIGATION ===*/
 nav {
   display: flex;
@@ -222,15 +253,7 @@ nav .wrapper {
 }
 
 nav.scroll {
-  background-color: var(--brand-green);
-}
-
-nav.scroll .logo path {
-  fill: white;
-}
-
-nav.scroll button path {
-  stroke: white;
+  background-color: var(--brand-primary);
 }
 
 nav button {
@@ -269,7 +292,7 @@ body.menu-expanded .menu {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: var(--brand-green);
+  background-color: var(--brand-primary);
 
   width: 100vw;
   height: 100vh;
@@ -313,7 +336,7 @@ body.menu-expanded .menu {
   font-size: 1.8rem;
   line-height: 2.3rem;
   text-transform: uppercase;
-  color: var(--brand-green);
+  color: var(--brand-primary);
   text-decoration: none;
 
   display: inline-block;
@@ -321,6 +344,13 @@ body.menu-expanded .menu {
 
   margin-top: 4.8rem;
   margin-bottom: 8rem;
+}
+
+.menu .button:hover {
+  background-color: var(--brand-primary);
+  color: white;
+
+  filter: brightness(1.5);
 }
 
 body.menu-expanded .logo,
@@ -354,12 +384,16 @@ body.menu-expanded button path {
 
   background-color: white;
 
-  border: 1px solid var(--brand-green-ligth);
+  border: 1px solid var(--brand-ligth);
   border-radius: 0.6rem;
 }
 
 .card h3 {
   margin-block: 1.6rem;
+}
+
+#services .card circle {
+  fill: var(--brand-ligth);
 }
 
 /*=== ABOUT ===*/
@@ -375,4 +409,82 @@ body.menu-expanded button path {
 #about .content p {
   margin-top: 2.4rem;
   margin-bottom: 6rem;
+}
+
+/*=== CONTACT ===*/
+#contact {
+  text-align: left;
+}
+
+#contact header {
+  margin-bottom: 3.2rem;
+}
+
+#contact ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  margin-bottom: 3.2rem;
+}
+
+#contact ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/*=== FOOTER ===*/
+footer {
+  background-color: var(--brand-primary);
+  padding-block: 6rem;
+
+  text-align: left;
+
+  color: #dddddd;
+}
+
+footer .logo {
+  display: inline-block;
+  margin-bottom: 2.4rem;
+}
+
+footer .logo svg {
+  width: 23.6rem;
+  height: 3.1rem;
+}
+
+footer .logo path {
+  fill: white;
+}
+
+footer p {
+  color: var(--brand-beige);
+  line-height: 2;
+  margin-bottom: 3.2rem;
+}
+
+footer .social-links {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+/*=== BACK TO TO ===*/
+#backToTopButton {
+  position: fixed;
+  bottom: 1rem;
+  right: 2.5rem;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(100%);
+  transition: 200ms;
+}
+
+#backToTopButton.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
